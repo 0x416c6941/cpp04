@@ -12,3 +12,6 @@ a.out
 # Compiled libraries.
 *.a
 *.so
+
+# Log files.
+*.log
