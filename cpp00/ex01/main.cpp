@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <cstddef>
+#include <iomanip>
 
 /**
  * Asks user for the command (may be ADD, SEARCH or EXIT).
@@ -33,7 +34,7 @@ t_command get_command() {
         else if (in.compare("EXIT") == 0) {
             return EXIT;
         }
-        std::cout << "Invalid command. Please try again." << std::endl;
+        std::cout << "Invalid command. Please try again." << std::endl << std::endl;
     }
 }
 
@@ -115,24 +116,17 @@ void add_contact(PhoneBook & pb) {
 }
 
 /**
- * Displays a string as a column with a specified width.
+ * Displays a string as a part of a column with a specified width.
  * @param   what            String to be displayed.
  * @param   column_width    Width of the column.
  */
-void display_as_column(const std::string & what, size_t column_width) {
-    std::size_t spaces = what.size() < column_width
-                         ? column_width - what.size() : 0;
-
-    for (std::size_t i = 0; i < spaces; i++) {
-        std::cout << ' ';
+void display_in_column(const std::string & what, size_t column_width) {
+    if (what.size() < column_width) {
+        std::cout << std::setw(column_width) << std::setfill(' ')
+                  << std::right << what;
+        return;
     }
-    if (what.size() > column_width) {
-        std::cout << what.substr(0, column_width - 1);
-        std::cout << '.';
-    }
-    else {
-        std::cout << what;
-    }
+    std::cout << what.substr(0, column_width - 1) << '.';
 }
 
 /**
@@ -149,13 +143,13 @@ void display_contacts(PhoneBook & pb, size_t column_width = 10) {
         ss.str(""); // Clearing the stream.
         ss << i + 1;
         idx = ss.str();
-        display_as_column(idx, column_width);
+        display_in_column(idx, column_width);
         std::cout << '|';
-        display_as_column(pb.get_contact(i).get_name(), column_width);
+        display_in_column(pb.get_contact(i).get_name(), column_width);
         std::cout << '|';
-        display_as_column(pb.get_contact(i).get_last_name(), column_width);
+        display_in_column(pb.get_contact(i).get_last_name(), column_width);
         std::cout << '|';
-        display_as_column(pb.get_contact(i).get_nickname(), column_width);
+        display_in_column(pb.get_contact(i).get_nickname(), column_width);
         std::cout << std::endl;
     }
 }
@@ -188,15 +182,15 @@ void display_specific_contact(PhoneBook & pb, size_t column_width = 10) {
         std::cerr << e.what() << std::endl;
         return;
     }
-    display_as_column(to_display.get_name(), column_width);
+    display_in_column(to_display.get_name(), column_width);
     std::cout << '|';
-    display_as_column(to_display.get_last_name(), column_width);
+    display_in_column(to_display.get_last_name(), column_width);
     std::cout << '|';
-    display_as_column(to_display.get_nickname(), column_width);
+    display_in_column(to_display.get_nickname(), column_width);
     std::cout << '|';
-    display_as_column(to_display.get_phone(), column_width);
+    display_in_column(to_display.get_phone(), column_width);
     std::cout << '|';
-    display_as_column(to_display.get_secret(), column_width);
+    display_in_column(to_display.get_secret(), column_width);
     std::cout << std::endl;
 }
 
