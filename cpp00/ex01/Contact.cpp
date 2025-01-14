@@ -8,6 +8,15 @@ Contact::Contact()
     : m_name(), m_last_name(), m_phone(), m_secret() {
 }
 
+Contact::Contact(const std::string & name, const std::string & last_name,
+                 const std::string & phone, const std::string & secret) {
+    set_name(name);
+    set_last_name(last_name);
+    set_phone(phone);
+    set_secret(secret);
+}
+
+
 Contact::Contact(const Contact & src)
     : m_name(src.m_name), m_last_name(src.m_last_name),
       m_phone(src.m_phone), m_secret(src.m_secret) {

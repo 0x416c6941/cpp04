@@ -9,6 +9,8 @@ class Contact {
 
     public:
         Contact();
+        Contact(const std::string & name, const std::string & last_name,
+                const std::string & phone, const std::string & secret);
         Contact(const Contact & src);
         Contact & operator = (const Contact & src);
         virtual ~Contact();

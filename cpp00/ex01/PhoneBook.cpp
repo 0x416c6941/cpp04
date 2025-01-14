@@ -27,6 +27,10 @@ PhoneBook::~PhoneBook() {
 }
 
 void PhoneBook::add_contact(const Contact & contact) {
+    if (contact.get_name().empty() || contact.get_last_name().empty()
+        || contact.get_phone().empty() || contact.get_secret().empty()) {
+        throw std::invalid_argument("PhoneBook::add_contact(): Contact contains some empty fields.");
+    }
     // Easiest case: we have room for the new contact
     if (m_contacts_cnt < m_MAX_CONTACTS) {
         m_contacts[m_contacts_cnt++] = contact;
