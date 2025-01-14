@@ -51,7 +51,7 @@ void add_contact(PhoneBook & pb) {
     const std::string eof_msg = "add_contact():: Got EOF.";
     Contact to_add;
 
-    std::cin.ignore();
+    std::cin.ignore();  // Flushing the buffer.
     std::cout << "Please enter a name of the new contact: ";
     std::getline(std::cin, in);
     if (std::cin.fail() && !std::cin.eof()) {
