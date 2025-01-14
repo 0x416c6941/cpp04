@@ -14,7 +14,7 @@ SRC_FILES = Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
 OBJ_FILES = $(patsubst %.cpp,%.o,$(SRC_FILES))
 
 # Name of the resulting binary file.
-NAME = zombie
+NAME = ex00
 
 # Targets.
 all: $(NAME)
