@@ -8,6 +8,10 @@ a.out
 cpp00/ex00/megaphone
 cpp00/ex01/phonebook
 cpp00/ex02/ex02
+cpp01/ex00/ex00
+cpp01/ex02/ex02
+cpp01/ex03/ex03
+cpp01/ex04/ex04
 
 # Dependency files.
 *.d
