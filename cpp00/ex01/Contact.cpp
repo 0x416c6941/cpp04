@@ -5,13 +5,15 @@
 #include <stdexcept>
 
 Contact::Contact()
-    : m_name(), m_last_name(), m_phone(), m_secret() {
+    : m_name(), m_last_name(), m_nickname(), m_phone(), m_secret() {
 }
 
 Contact::Contact(const std::string & name, const std::string & last_name,
+                 const std::string & nickname,
                  const std::string & phone, const std::string & secret) {
     set_name(name);
     set_last_name(last_name);
+    set_nickname(nickname);
     set_phone(phone);
     set_secret(secret);
 }
@@ -19,6 +21,7 @@ Contact::Contact(const std::string & name, const std::string & last_name,
 
 Contact::Contact(const Contact & src)
     : m_name(src.m_name), m_last_name(src.m_last_name),
+      m_nickname(src.m_nickname),
       m_phone(src.m_phone), m_secret(src.m_secret) {
 }
 
@@ -28,6 +31,7 @@ Contact & Contact::operator = (const Contact & src) {
     }
     m_name = src.m_name;
     m_last_name = src.m_last_name;
+    m_nickname = src.m_nickname;
     m_phone = src.m_phone;
     m_secret = src.m_secret;
     return *this;
@@ -42,6 +46,10 @@ void Contact::set_name(const std::string & name) {
 
 void Contact::set_last_name(const std::string & last_name) {
     m_last_name = last_name;
+}
+
+void Contact::set_nickname(const std::string & nickname) {
+    m_nickname = nickname;
 }
 
 void Contact::set_phone(const std::string & phone) {
@@ -65,6 +73,10 @@ const std::string & Contact::get_name() const {
 
 const std::string & Contact::get_last_name() const {
     return m_last_name;
+}
+
+const std::string & Contact::get_nickname() const {
+    return m_nickname;
 }
 
 const std::string & Contact::get_phone() const {

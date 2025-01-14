@@ -5,11 +5,12 @@
 
 class Contact {
     private:
-        std::string m_name, m_last_name, m_phone, m_secret;
+        std::string m_name, m_last_name, m_nickname, m_phone, m_secret;
 
     public:
         Contact();
         Contact(const std::string & name, const std::string & last_name,
+                const std::string & nickname,
                 const std::string & phone, const std::string & secret);
         Contact(const Contact & src);
         Contact & operator = (const Contact & src);
@@ -17,6 +18,7 @@ class Contact {
 
         void set_name(const std::string & name);
         void set_last_name(const std::string & last_name);
+        void set_nickname(const std::string & last_name);
         /**
          * Sets a phone number of the contact.
          * @param   phone               New phone number of the contact.
@@ -28,6 +30,7 @@ class Contact {
 
         const std::string & get_name() const;
         const std::string & get_last_name() const;
+        const std::string & get_nickname() const;
         const std::string & get_phone() const;
         const std::string & get_secret() const;
 };
