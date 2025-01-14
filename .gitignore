@@ -5,6 +5,9 @@
 # Binary, object files.
 a.out
 *.o
+cpp00/ex00/megaphone
+cpp00/ex01/phonebook
+cpp00/ex02/ex02
 
 # Dependency files.
 *.d
