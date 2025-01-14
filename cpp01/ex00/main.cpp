@@ -15,6 +15,7 @@ int main() {
     std::cout << std::endl;
     std::cout << "Stack zombie:" << std::endl;
     randomChump("Gigachad");
+    std::cout << std::endl;
     delete heap_zombie;
     return 0;
 }
