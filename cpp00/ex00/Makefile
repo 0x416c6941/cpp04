@@ -19,7 +19,7 @@ all: $(NAME)
 $(NAME): $(OBJ_FILES)
 	$(CXX) $(CXXFLAGS) $(OBJ_FILES) -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+%.o: %.c
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: clean
