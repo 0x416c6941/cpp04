@@ -9,14 +9,18 @@ class Contact {
 
     public:
         Contact();
-        Contact(const std::string & name, const std::string & last_name,
-                const std::string & phone, const std::string & secret);
         Contact(const Contact & src);
         Contact & operator = (const Contact & src);
         virtual ~Contact();
 
         void set_name(const std::string & name);
         void set_last_name(const std::string & last_name);
+        /**
+         * Sets a phone number of the contact.
+         * @param   phone               New phone number of the contact.
+         * @throws  invalid_argument    \p phone contains illegal characters
+         *                              (it's invalid).
+         */
         void set_phone(const std::string & phone);
         void set_secret(const std::string & secret);
 

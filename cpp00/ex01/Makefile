@@ -1,7 +1,7 @@
 # Compiler options.
 CXX = c++
-CXXFLAGS = -I$(INC_DIR) -std=c++98					\
-	 -Wall -Wextra -Weffc++ -Wsign-conversion -pedantic -Werror	\
+CXXFLAGS = -I$(INC_DIR) -std=c++98				\
+	 -Wall -Wextra -Wsign-conversion -pedantic -Werror	\
 	 -g -fsanitize=address
 
 # Headers.

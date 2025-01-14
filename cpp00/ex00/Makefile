@@ -1,7 +1,7 @@
 # Compiler options.
 CXX = c++
-CXXFLAGS = -std=c++98							\
-	 -Wall -Wextra -Weffc++ -Wsign-conversion -pedantic -Werror	\
+CXXFLAGS = -std=c++98						\
+	 -Wall -Wextra -Wsign-conversion -pedantic -Werror	\
 	 -g -fsanitize=address
 
 # Source files.
