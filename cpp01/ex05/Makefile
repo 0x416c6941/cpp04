@@ -14,7 +14,7 @@ SRC_FILES = Harl.cpp main.cpp
 OBJ_FILES = $(patsubst %.cpp,%.o,$(SRC_FILES))
 
 # Name of the resulting binary file.
-NAME = ex04
+NAME = ex05
 
 # Targets.
 all: $(NAME)
