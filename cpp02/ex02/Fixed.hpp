@@ -8,9 +8,6 @@ class Fixed {
         int m_val;
 
         static const int m_FRACT_BITS = 8;
-        // To mask all bits other than 8 fractional ones
-        // (I'm lazy to write a loop to toggle them).
-        static const int m_MASK = 0xff;
 
     public:
         Fixed();
