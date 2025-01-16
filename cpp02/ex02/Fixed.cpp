@@ -150,6 +150,10 @@ Fixed operator * (const Fixed & lhs, const Fixed & rhs) {
 }
 
 Fixed operator / (const Fixed & lhs, const Fixed & rhs) {
+    if (rhs.getRawBits() == 0) {
+        // This is not required, but still why not :p
+        throw std::domain_error("operator / ():: Divison by zero.");
+    }
     return Fixed(lhs.toFloat() / rhs.toFloat());
 }
 
