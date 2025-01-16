@@ -22,9 +22,14 @@ class Fixed {
 
         float toFloat() const;
         int toInt() const;
+
+        static Fixed & min(Fixed & lhs, Fixed & rhs);
+        static const Fixed & min(const Fixed & lhs, const Fixed & rhs);
+        static Fixed & max(Fixed & lhs, Fixed & rhs);
+        static const Fixed & max(const Fixed & lhs, const Fixed & rhs);
 };
 
-std::ostream & operator << (std::ostream & os, const Fixed & fixed);
+std::ostream & operator << (std::ostream & os, const Fixed & a);
 
 bool operator > (const Fixed & lhs, const Fixed & rhs);
 bool operator < (const Fixed & lhs, const Fixed & rhs);
@@ -37,5 +42,10 @@ Fixed operator + (const Fixed & lhs, const Fixed & rhs);
 Fixed operator - (const Fixed & lhs, const Fixed & rhs);
 Fixed operator * (const Fixed & lhs, const Fixed & rhs);
 Fixed operator / (const Fixed & lhs, const Fixed & rhs);
+
+Fixed & operator ++ (Fixed & a);
+Fixed operator ++ (Fixed & a, int);
+Fixed & operator -- (Fixed & a);
+Fixed operator -- (Fixed & a, int);
 
 #endif  // FIXED_HPP

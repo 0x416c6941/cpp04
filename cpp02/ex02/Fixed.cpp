@@ -74,8 +74,36 @@ int Fixed::toInt() const {
     return m_val >> m_FRACT_BITS;
 }
 
-std::ostream & operator << (std::ostream & os, const Fixed & fixed) {
-    os << fixed.toFloat();
+Fixed & Fixed::min(Fixed & lhs, Fixed & rhs) {
+    if (lhs < rhs) {
+        return lhs;
+    }
+    return rhs;
+}
+
+const Fixed & Fixed::min(const Fixed & lhs, const Fixed & rhs) {
+    if (lhs < rhs) {
+        return lhs;
+    }
+    return rhs;
+}
+
+Fixed & Fixed::max(Fixed & lhs, Fixed & rhs) {
+    if (lhs < rhs) {
+        return rhs;
+    }
+    return lhs;
+}
+
+const Fixed & Fixed::max(const Fixed & lhs, const Fixed & rhs) {
+    if (lhs < rhs) {
+        return rhs;
+    }
+    return lhs;
+}
+
+std::ostream & operator << (std::ostream & os, const Fixed & a) {
+    os << a.toFloat();
     return os;
 }
 
@@ -123,4 +151,28 @@ Fixed operator * (const Fixed & lhs, const Fixed & rhs) {
 
 Fixed operator / (const Fixed & lhs, const Fixed & rhs) {
     return Fixed(lhs.toFloat() / rhs.toFloat());
+}
+
+Fixed & operator ++ (Fixed & a) {
+    a.setRawBits(a.getRawBits() + 1);
+    return a;
+}
+
+Fixed operator ++ (Fixed & a, int) {
+    Fixed ret(a);
+
+    a.setRawBits(a.getRawBits() + 1);
+    return ret;
+}
+
+Fixed & operator -- (Fixed & a) {
+    a.setRawBits(a.getRawBits() - 1);
+    return a;
+}
+
+Fixed operator -- (Fixed & a, int) {
+    Fixed ret(a);
+
+    a.setRawBits(a.getRawBits() - 1);
+    return ret;
 }
