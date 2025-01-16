@@ -102,3 +102,25 @@ bool operator == (const Fixed & lhs, const Fixed & rhs) {
 bool operator != (const Fixed & lhs, const Fixed & rhs) {
     return !(lhs.getRawBits() == rhs.getRawBits());
 }
+
+Fixed operator + (const Fixed & lhs, const Fixed & rhs) {
+    Fixed ret;
+
+    ret.setRawBits(lhs.getRawBits() + rhs.getRawBits());
+    return ret;
+}
+
+Fixed operator - (const Fixed & lhs, const Fixed & rhs) {
+    Fixed ret;
+
+    ret.setRawBits(lhs.getRawBits() - rhs.getRawBits());
+    return ret;
+}
+
+Fixed operator * (const Fixed & lhs, const Fixed & rhs) {
+    return Fixed(lhs.toFloat() * rhs.toFloat());
+}
+
+Fixed operator / (const Fixed & lhs, const Fixed & rhs) {
+    return Fixed(lhs.toFloat() / rhs.toFloat());
+}

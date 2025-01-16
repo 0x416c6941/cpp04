@@ -36,4 +36,9 @@ bool operator <= (const Fixed & lhs, const Fixed & rhs);
 bool operator == (const Fixed & lhs, const Fixed & rhs);
 bool operator != (const Fixed & lhs, const Fixed & rhs);
 
+Fixed operator + (const Fixed & lhs, const Fixed & rhs);
+Fixed operator - (const Fixed & lhs, const Fixed & rhs);
+Fixed operator * (const Fixed & lhs, const Fixed & rhs);
+Fixed operator / (const Fixed & lhs, const Fixed & rhs);
+
 #endif  // FIXED_HPP

@@ -8,6 +8,6 @@ int main(void) {
     Fixed const d;
 
     std::cout << (b > c) << std::endl;
-    std::cout << (Fixed(-10) > Fixed(-42.42f)) << std::endl;
+    std::cout << Fixed(50) / Fixed(20) << std::endl;
     return 0;
 }
