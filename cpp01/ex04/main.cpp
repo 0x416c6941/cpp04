@@ -38,6 +38,9 @@ void replacement_magic(std::string & to_replace,
                        const std::string & s1, const std::string & s2) {
     std::size_t pos = 0;
 
+    if (s1.length() == 0) {
+        return;
+    }
     // Keep replacing s1 with s2 until no more occurences are found.
     while ((pos = to_replace.find(s1, pos)) != std::string::npos) {
         to_replace.erase(pos, s1.length());
