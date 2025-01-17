@@ -8,7 +8,6 @@ class Animal {
         std::string m_type;
 
     public:
-        Animal();
         Animal(const std::string & type);
         Animal(const Animal & src);
         Animal & operator = (const Animal & src);
