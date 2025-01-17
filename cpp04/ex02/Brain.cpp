@@ -52,16 +52,15 @@ const std::string & Brain::get_idea(size_t idx) const {
 }
 
 void Brain::add_idea(const std::string & idea) {
-    if (m_ideas_cnt < m_IDEAS_SIZE) {
-        m_ideas[m_ideas_cnt++] = idea;
-        return;
+    std::size_t i = m_ideas_cnt;
+
+    // Shifting ideas to the right.
+    if (i >= m_IDEAS_SIZE) {
+        i = m_IDEAS_SIZE - 1;
     }
-    else if (m_IDEAS_SIZE == 0) {
-        // Can't add idea anyway.
-        return;
-    }
-    for (std::size_t i = m_ideas_cnt - 1; i > 0; i--) {
+    while (i > 0) {
         m_ideas[i] = m_ideas[i - 1];
+        i--;
     }
     *m_ideas = idea;
 }
