@@ -14,6 +14,10 @@ cpp01/ex03/ex03
 cpp01/ex04/ex04
 cpp01/ex05/ex05
 cpp01/ex06/harlFilter
+cpp02/ex00/ex00
+cpp02/ex01/ex01
+cpp02/ex02/ex02
+cpp02/ex03/ex03
 
 # Dependency files.
 *.d
