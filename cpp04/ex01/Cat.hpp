@@ -2,12 +2,8 @@
 #define CAT_HPP
 
 #include <Animal.hpp>
-#include <Brain.hpp>
 
 class Cat : public Animal {
-    private:
-        Brain * m_brain;
-
     public:
         Cat();
         Cat(const Cat & src);
@@ -15,7 +11,6 @@ class Cat : public Animal {
         virtual ~Cat();
 
         virtual void makeSound() const;
-        Brain & get_brain();
 };
 
 #endif  // CAT_HPP

@@ -63,4 +63,7 @@ void Brain::add_idea(const std::string & idea) {
         i--;
     }
     *m_ideas = idea;
+    if (m_ideas_cnt < m_IDEAS_SIZE) {
+        m_ideas_cnt++;
+    }
 }

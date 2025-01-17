@@ -3,10 +3,10 @@
 #include <string>
 #include <iostream>
 
-Cat::Cat() : Animal("Cat"), m_brain(new Brain()) {
+Cat::Cat() : Animal("Cat") {
 }
 
-Cat::Cat(const Cat & src): Animal(src), m_brain(new Brain(*src.m_brain)) {
+Cat::Cat(const Cat & src): Animal(src) {
 }
 
 Cat & Cat::operator = (const Cat & src) {
@@ -14,18 +14,12 @@ Cat & Cat::operator = (const Cat & src) {
         return *this;
     }
     Animal::operator = (src);
-    m_brain = new Brain(*src.m_brain);
     return *this;
 }
 
 Cat::~Cat() {
-    delete m_brain;
 }
 
 void Cat::makeSound() const {
     std::cout << "Meow :3" << std::endl;
-}
-
-Brain & Cat::get_brain() {
-    return *m_brain;
 }
