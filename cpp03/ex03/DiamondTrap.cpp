@@ -28,7 +28,7 @@ DiamondTrap & DiamondTrap::operator = (const DiamondTrap & src) {
     if (this == &src) {
         return *this;
     }
-    DiamondTrap::operator = (src);
+    ClapTrap::operator = (src);
     m_name = src.m_name;
     m_hp = src.m_hp;
     m_ep = src.m_ep;
