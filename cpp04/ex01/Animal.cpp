@@ -2,6 +2,9 @@
 #include <string>
 #include <iostream>
 
+Animal::Animal() : m_type() {
+}
+
 Animal::Animal(const std::string & type) : m_type(type) {
 }
 
