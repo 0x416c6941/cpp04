@@ -23,8 +23,8 @@ HumanB & HumanB::operator = (const HumanB & src) {
 HumanB::~HumanB() {
 }
 
-void HumanB::setWeapon(const Weapon * weapon) {
-    m_weapon = weapon;
+void HumanB::setWeapon(const Weapon & weapon) {
+    m_weapon = &weapon;
 }
 
 void HumanB::attack() const {
