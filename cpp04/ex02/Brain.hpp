@@ -24,11 +24,6 @@ class Brain {
          *                          which isn't present in Brain.
          */
         const std::string & get_idea(size_t idx) const;
-        /**
-         * Saves \p idea in the Brain.
-         * Previously saved ideas would be shifted to the right.
-         * @param   idea    Idea to add to the brain.
-         */
         void add_idea(const std::string & idea);
 };
 
