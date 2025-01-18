@@ -74,8 +74,9 @@ void Harl::set_loglevel(std::string level) {
 }
 
 void Harl::yap() const {
-    // This is stupid, but we can't just fallthrough the cases,
+    // This is stupid, but when using g++ we can't just fallthrough the cases,
     // since otherwise -Werror would cry out loud...
+    // clang++ is fine though.
     switch (m_log_level) {
         case DEBUG:
             std::cout << "[ DEBUG ]" << std::endl;
