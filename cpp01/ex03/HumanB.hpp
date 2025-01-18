@@ -16,6 +16,7 @@ class HumanB {
         virtual ~HumanB();
 
         void setWeapon(const Weapon & weapon);
+        void setWeapon(const Weapon * weapon);
         void attack() const;
 };
 
