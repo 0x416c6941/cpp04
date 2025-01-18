@@ -27,10 +27,6 @@ void HumanB::setWeapon(const Weapon & weapon) {
     m_weapon = &weapon;
 }
 
-void HumanB::setWeapon(const Weapon * weapon) {
-    m_weapon = weapon;
-}
-
 void HumanB::attack() const {
     std::cout << m_name;
     if (m_weapon == NULL) {
