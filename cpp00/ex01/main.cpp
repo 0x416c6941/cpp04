@@ -6,6 +6,32 @@
 #include <sstream>
 #include <cstddef>
 #include <iomanip>
+#include <limits>
+
+/**
+ * Trims continuous spaces from front and back of \p s.
+ * @param   s   String to remove continuous paces from from and back of.
+ */
+void trim_spaces(std::string & s) {
+    std::size_t i;
+
+    // From the front.
+    while (s.length() != 0) {
+        if (s.at(0) == ' ') {
+            s.erase(s.begin());
+            continue;
+        }
+        break;
+    }
+    // From the back.
+    while ((i = s.length()) != 0) {
+        if (s.at(i - 1) == ' ') {
+            s.erase(i - 1, 1);
+            continue;
+        }
+        break;
+    }
+}
 
 /**
  * Asks user for the command (may be ADD, SEARCH or EXIT).
@@ -18,14 +44,18 @@ t_command get_command() {
 
     for (;;) {
         std::cout << "Please enter ADD, SEARCH or EXIT: ";
-        std::cin >> in;
+        std::getline(std::cin, in);
         if (std::cin.fail() && !std::cin.eof()) {
             throw std::ios_base::failure("get_command():: IO error.");
         }
         else if (std::cin.eof()) {
             throw std::runtime_error("get_command():: Got EOF.");
         }
-        else if (in.compare("ADD") == 0) {
+        trim_spaces(in);
+        // I'm too lazy to add a function to transform the string to lowercase,
+        // since we can't use anything from <algorithm>,
+        // so std::transform() isn't available.
+        if (in.compare("ADD") == 0) {
             return ADD;
         }
         else if (in.compare("SEARCH") == 0) {
@@ -52,7 +82,6 @@ void add_contact(PhoneBook & pb) {
     const std::string eof_msg = "add_contact():: Got EOF.";
     Contact to_add;
 
-    std::cin.ignore();  // Flushing the buffer.
     std::cout << "Please enter a name of the new contact: ";
     std::getline(std::cin, in);
     if (std::cin.fail() && !std::cin.eof()) {
@@ -61,6 +90,7 @@ void add_contact(PhoneBook & pb) {
     else if (std::cin.eof()) {
         throw std::runtime_error(eof_msg);
     }
+    trim_spaces(in);
     to_add.set_name(in);
     std::cout << "Please enter a last name of the new contact: ";
     std::getline(std::cin, in);
@@ -70,6 +100,7 @@ void add_contact(PhoneBook & pb) {
     else if (std::cin.eof()) {
         throw std::runtime_error(eof_msg);
     }
+    trim_spaces(in);
     to_add.set_last_name(in);
     std::cout << "Please enter a nickname of the new contact: ";
     std::getline(std::cin, in);
@@ -90,6 +121,7 @@ void add_contact(PhoneBook & pb) {
             throw std::runtime_error(eof_msg);
         }
         try {
+            trim_spaces(in);
             to_add.set_phone(in);
         }
         catch (std::invalid_argument & e) {
@@ -106,6 +138,7 @@ void add_contact(PhoneBook & pb) {
     else if (std::cin.eof()) {
         throw std::runtime_error(eof_msg);
     }
+    trim_spaces(in);
     to_add.set_secret(in);
     try {
         pb.add_contact(to_add);
@@ -167,13 +200,21 @@ void display_specific_contact(PhoneBook & pb, size_t column_width = 10) {
     std::size_t idx;
     Contact to_display;
 
-    std::cout << "Which contact to display: ";
-    std::cin >> idx;
-    if (std::cin.fail() && !std::cin.eof()) {
-        throw std::ios_base::failure("display_specific_contact():: IO error.");
-    }
-    else if (std::cin.eof()) {
-        throw std::runtime_error("display_specific_contact():: Got EOF.");
+    for (;;) {
+        std::cout << "Which contact to display: ";
+        std::cin >> idx;
+        if (std::cin.bad()) {
+            throw std::ios_base::failure("display_specific_contact():: IO error.");
+        }
+        else if (std::cin.eof()) {
+            throw std::runtime_error("display_specific_contact():: Got EOF.");
+        }
+        else if (std::cin.fail()) {
+            std::cerr << "Invalid input." << std::endl;
+            // Resetting the flags and clearing the input buffer.
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
     }
     try {
         to_display = pb.get_contact(idx - 1);
