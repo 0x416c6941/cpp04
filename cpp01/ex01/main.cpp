@@ -25,6 +25,6 @@ int main() {
     for (int i = 0; i < horde_size; i++) {
         zombie[i].announce();
     }
-    delete[] zombie;
+    delete [] zombie;
     return 0;
 }
