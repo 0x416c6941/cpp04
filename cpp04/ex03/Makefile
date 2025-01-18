@@ -9,7 +9,8 @@ INC_DIR = .
 
 # Source files.
 SRC_FILES = AMateria.cpp Ice.cpp Cure.cpp ICharacter.cpp	\
-	    World.cpp Character.cpp main.cpp
+	    World.cpp Character.cpp IMateriaSource.cpp 		\
+	    MateriaSource.cpp main.cpp
 
 # Object files.
 OBJ_FILES = $(patsubst %.cpp,%.o,$(SRC_FILES))

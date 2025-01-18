@@ -3,9 +3,26 @@
 #include <cstddef>
 #include <World.hpp>
 #include <AMateria.hpp>
+#include <iostream>
 #include <ICharacter.hpp>
 
+Character::Character(const std::string & name) : m_name(name),
+                                                 m_equipped_materias(0),
+                                                 m_world(NULL) {
+    for (std::size_t i = 0; i < m_MATERIAS_SIZE; i++) {
+        m_materias[i] = NULL;
+    }
+}
+
 Character::Character(const std::string & name, World & world) : m_name(name),
+                                                                m_equipped_materias(0),
+                                                                m_world(&world) {
+    for (std::size_t i = 0; i < m_MATERIAS_SIZE; i++) {
+        m_materias[i] = NULL;
+    }
+}
+
+Character::Character(const std::string & name, World * world) : m_name(name),
                                                                 m_equipped_materias(0),
                                                                 m_world(world) {
     for (std::size_t i = 0; i < m_MATERIAS_SIZE; i++) {
@@ -72,7 +89,15 @@ void Character::unequip(int idx) {
     }
     // Unequipping the materia
     // and shifting previously equipped materias to the left.
-    m_world.save_materia(m_materias[idx]);
+    if (m_world != NULL) {
+        m_world->save_materia(m_materias[idx]);
+    }
+    else {
+        std::cerr << "Character::unequip(): Warning:"
+                  << " m_world wasn't specified during object creation."
+                  << " Materia was destroyed directly." << std::endl;
+        delete m_materias[idx];
+    }
     for (std::size_t i = (std::size_t) idx; i < m_MATERIAS_SIZE - 1; i++) {
         m_materias[i] = m_materias[i + 1];
     }

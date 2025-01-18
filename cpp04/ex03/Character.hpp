@@ -15,10 +15,12 @@ class Character : public ICharacter {
         AMateria * m_materias[m_MATERIAS_SIZE];
         std::size_t m_equipped_materias;
 
-        World & m_world;    // Where to store dropped (unequiped) materias.
+        World * m_world;    // Where to store dropped (unequiped) materias.
 
     public:
+        Character(const std::string & name);
         Character(const std::string & name, World & world);
+        Character(const std::string & name, World * world);
         Character(const Character & src);
         Character & operator = (const Character & src);
         virtual ~Character();
